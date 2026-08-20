@@ -14,9 +14,6 @@ function App() {
       {/* 2. Zona de la Portada (Hero) */}
       <Hero />
 
-      {/* 3. Zona del Carrusel */}
-      <Carrusel />
-
       {/* 3. Zona del Menú (La que ya trabajamos) */}
       <Menu />
 
