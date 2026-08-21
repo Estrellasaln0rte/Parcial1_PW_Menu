@@ -11,6 +11,7 @@ function App() {
       {/* 1. Zona del Header (Navegación) */}
       <Header />
 
+      <main>
       {/* 2. Zona de la Portada (Hero) */}
       <Hero />
 
@@ -19,6 +20,7 @@ function App() {
 
       {/* 3. Zona del Menú (La que ya trabajamos) */}
       <Menu />
+      </main>
 
       {/* 4. Zona del Footer / Contacto */}
       <Footer />
