@@ -31,7 +31,7 @@ app.post("/api/contacto", async (req, res) => {
 
         const { data, error } = await resend.emails.send({
 
-            from: "Mi página <onboarding@resend.dev>",
+            from: "Página Web La Placita <onboarding@resend.dev>",
 
             to: ["laplacita.comedor@gmail.com"],
 
