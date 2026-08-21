@@ -31,15 +31,6 @@
     ]
   },
   {
-<<<<<<< HEAD
-    "id": "2",
-    "nombre": "Café de Olla",
-    "descripcion": "Café dulce con canela y cardamomo.",
-    "alt": "Café de olla con canela y cardamomo",
-    "precio": 15.00,
-    "categoria": "Bebidas",
-    "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Cafe"
-=======
     "id": "prod-002",
     "nombre": "Desayuno Completo",
     "descripcion": "Huevos revueltos, frijoles, aguacate, queso y pan.",
@@ -69,15 +60,10 @@
     "etiquetas": [
       "Completo"
     ]
->>>>>>> 56f43abb6ec7a81c243b81607fcc42c7c93fe8a8
   },
   {
     "id": "prod-003",
     "nombre": "Pepián de Pollo",
-<<<<<<< HEAD
-    "descripcion": "Recado tradicional con arroz y tortillas.",
-    "alt": "Plato con pepián de pollo, arroz y tortillas",
-=======
     "descripcion": "Pollo acompañado de una salsa tradicional de pepián, arroz y verduras.",
     "precio": 55.00,
     "categoriaId": "cat-02",
@@ -349,7 +335,6 @@
     "id": "prod-012",
     "nombre": "Plato del Día",
     "descripcion": "Almuerzo completo que cambia según la disponibilidad del comedor.",
->>>>>>> 56f43abb6ec7a81c243b81607fcc42c7c93fe8a8
     "precio": 45.00,
     "categoriaId": "cat-08",
     "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Especial",
