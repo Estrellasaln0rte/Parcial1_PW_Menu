@@ -3,6 +3,7 @@
     "id": "1",
     "nombre": "Desayuno Chapín",
     "descripcion": "Huevos, frijoles volteados, plátanos fritos y queso.",
+    "alt": "Plato con huevos, frijoles volteados, plátano frito y queso",
     "precio": 35.00,
     "categoria": "Desayunos",
     "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Huevos"
@@ -11,6 +12,7 @@
     "id": "2",
     "nombre": "Café de Olla",
     "descripcion": "Café dulce con canela y cardamomo.",
+    "alt": "Café de olla con canela y cardamomo",
     "precio": 15.00,
     "categoria": "Bebidas",
     "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Cafe"
@@ -19,6 +21,7 @@
     "id": "3",
     "nombre": "Pepián de Pollo",
     "descripcion": "Recado tradicional con arroz y tortillas.",
+    "alt": "Plato con pepián de pollo, arroz y tortillas",
     "precio": 45.00,
     "categoria": "Comida",
     "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Pepian"

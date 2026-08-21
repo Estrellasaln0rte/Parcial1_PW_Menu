@@ -1,9 +1,9 @@
-export default function Tarjeta({ nombre, descripcion, precio, imagen }) {
+export default function Tarjeta({ nombre, descripcion, precio, imagen, alt }) {
   return (
     <article className="menu-card">
       <div className="pixel-frame">
         {/* El atributo alt es vital para el lector de pantalla de Wendy */}
-        <img src={imagen} alt={`Foto de ${nombre}`} />
+        <img src={imagen} alt={alt} />
       </div>
       <div className="card-info">
         <h3>{nombre}</h3>
