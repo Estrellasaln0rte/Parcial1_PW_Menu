@@ -1,21 +1,26 @@
-const express = require("express");
-const cors = require("cors");
-const { Resend } = require("resend");
-require("dotenv").config();
+const express = require("express"); //Crear y administrar servidor web en Node.js
+const cors = require("cors"); //Comunicación entre servidores (Frontend y Backend)
+const { Resend } = require("resend"); //Librería para la conexión con API 'Resend'
+require("dotenv").config(); //Almacenamiento de API key
+
+//Mensaje en consola para prueba
+console.log(
+    "API Key cargada:",
+    process.env.RESEND_API_KEY ? "SI" : "NO"
+);
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+//Lectura de API Key
 const resend = new Resend(process.env.RESEND_API_KEY);
-
 
 // Ruta de prueba
 app.get("/", (req, res) => {
     res.send("Backend funcionando");
 });
-
 
 // Endpoint del formulario
 app.post("/api/contacto", async (req, res) => {
