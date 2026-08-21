@@ -1,6 +1,5 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Carrusel from "./components/Carrusel";
 import Menu from './components/Menu';
 import Footer from './components/Footer';
 import './styles/index.css';
