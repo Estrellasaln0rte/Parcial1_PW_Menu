@@ -6,7 +6,7 @@
     "alt": "Plato con huevos, frijoles volteados, plátano frito y queso",
     "precio": 35.00,
     "categoriaId": "cat-01",
-    "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Huevos",
+    "imagen": "/src/assets/platos/Desayunochapin.jpg",
     "alt": "Desayuno chapín con huevos, frijoles, plátanos fritos y queso",
     "detalle": {
       "ingredientes": [
@@ -36,7 +36,7 @@
     "descripcion": "Huevos revueltos, frijoles, aguacate, queso y pan.",
     "precio": 40.00,
     "categoriaId": "cat-01",
-    "imagen": "https://placehold.co/150x150/5C4033/FDF9F1?text=Desayuno",
+    "imagen": "/src/assets/platos/Desayunocompleto.jpg",
     "alt": "Desayuno completo con huevos, frijoles, aguacate, queso y pan",
     "detalle": {
       "ingredientes": [
@@ -67,7 +67,7 @@
     "descripcion": "Pollo acompañado de una salsa tradicional de pepián, arroz y verduras.",
     "precio": 55.00,
     "categoriaId": "cat-02",
-    "imagen": "https://placehold.co/150x150/8B4513/FDF9F1?text=Pepian",
+    "imagen": "/src/assets/platos/PepiandePollo.jpg",
     "alt": "Plato de pepián de pollo con arroz y verduras",
     "detalle": {
       "ingredientes": [
@@ -102,7 +102,7 @@
     "descripcion": "Pechuga de pollo a la plancha acompañada de arroz y ensalada.",
     "precio": 48.00,
     "categoriaId": "cat-02",
-    "imagen": "https://placehold.co/150x150/6B4F3A/FDF9F1?text=Pollo",
+    "imagen": "/src/assets/platos/PolloALaPlancha.jpg",
     "alt": "Pechuga de pollo a la plancha con arroz y ensalada",
     "detalle": {
       "ingredientes": [
@@ -131,7 +131,7 @@
     "descripcion": "Carne de res guisada en salsa de tomate con papas y zanahoria.",
     "precio": 52.00,
     "categoriaId": "cat-02",
-    "imagen": "https://placehold.co/150x150/704214/FDF9F1?text=Carne",
+    "imagen": "/src/assets/platos/CarneGuisada.jpg",
     "alt": "Carne de res guisada con papas, zanahoria y arroz",
     "detalle": {
       "ingredientes": [
@@ -161,7 +161,7 @@
     "descripcion": "Tostadas de maíz crujientes con guacamole, tomate y cebolla.",
     "precio": 25.00,
     "categoriaId": "cat-03",
-    "imagen": "https://placehold.co/150x150/556B2F/FDF9F1?text=Tostadas",
+    "imagen": "/src/assets/platos/TostadasDeGuacamole.jpg",
     "alt": "Tostadas de maíz con guacamole, tomate y cebolla",
     "detalle": {
       "ingredientes": [
@@ -189,7 +189,7 @@
     "descripcion": "Ensalada fresca con pollo a la plancha y vegetales.",
     "precio": 38.00,
     "categoriaId": "cat-04",
-    "imagen": "https://placehold.co/150x150/6B8E23/FDF9F1?text=Ensalada",
+    "imagen": "/src/assets/platos/EnsaladaDePollo.jpg",
     "alt": "Ensalada fresca con pollo a la plancha, lechuga, tomate y zanahoria",
     "detalle": {
       "ingredientes": [
@@ -218,7 +218,7 @@
     "descripcion": "Hamburguesa de carne de res con queso, lechuga, tomate y cebolla.",
     "precio": 42.00,
     "categoriaId": "cat-05",
-    "imagen": "https://placehold.co/150x150/3E2723/FDF9F1?text=Hamburguesa",
+    "imagen": "/src/assets/platos/HamburguesaClasica.jpg",
     "alt": "Hamburguesa clásica de carne con queso, lechuga, tomate y cebolla",
     "detalle": {
       "ingredientes": [
@@ -252,7 +252,7 @@
     "descripcion": "Jugo natural preparado con naranjas frescas.",
     "precio": 15.00,
     "categoriaId": "cat-06",
-    "imagen": "https://placehold.co/150x150/F4A460/3E2723?text=Jugo",
+    "imagen": "/src/assets/platos/JugoDeNaranja.jpg",
     "alt": "Vaso de jugo natural de naranja recién preparado",
     "detalle": {
       "ingredientes": [
@@ -276,7 +276,7 @@
     "descripcion": "Café caliente preparado con leche.",
     "precio": 12.00,
     "categoriaId": "cat-06",
-    "imagen": "https://placehold.co/150x150/6F4E37/FDF9F1?text=Cafe",
+    "imagen": "/src/assets/platos/CafeConLeche.jpg",
     "alt": "Taza de café con leche caliente",
     "detalle": {
       "ingredientes": [
@@ -303,7 +303,7 @@
     "descripcion": "Pastel suave bañado en tres tipos de leche y cubierto con crema.",
     "precio": 22.00,
     "categoriaId": "cat-07",
-    "imagen": "https://placehold.co/150x150/F5DEB3/3E2723?text=Postre",
+    "imagen": "/src/assets/platos/TresLeches.jpg",
     "alt": "Porción de pastel de tres leches cubierta con crema",
     "detalle": {
       "ingredientes": [
@@ -337,7 +337,7 @@
     "descripcion": "Almuerzo completo que cambia según la disponibilidad del comedor.",
     "precio": 45.00,
     "categoriaId": "cat-08",
-    "imagen": "https://placehold.co/150x150/794C30/FDF9F1?text=Especial",
+    "imagen": "/src/assets/platos/PlatoDelDia.jpg",
     "alt": "Plato del día del comedor con acompañamientos variados",
     "detalle": {
       "ingredientes": [
