@@ -1,46 +1,57 @@
 import { useState } from 'react';
 import Tarjeta from './Tarjeta';
-import productos from '../data/menu.json';
+import categorias from '../data/categorias.json';
+import productos from '../data/menu.json'; 
 
 export default function Menu() {
-  // ZONA A · estado — arriba del return
-  const [categoria, setCategoria] = useState("todas");
+  const [categoriaActiva, setCategoriaActiva] = useState("todas");
+  // NUEVO ESTADO: Guarda el ID de la tarjeta abierta. Si es null, todas están cerradas.
+  const [tarjetaExpandida, setTarjetaExpandida] = useState(null);
 
-  // ZONA B · derivado — debajo del estado
-  const visibles = categoria === "todas" 
-    ? productos 
-    : productos.filter(p => p.categoria === categoria);
+  const visibles = productos.filter(producto => {
+    if (producto.disponible === false) return false;
+    if (categoriaActiva === "todas") return true;
+    return producto.categoriaId === categoriaActiva;
+  });
 
-  const categoriasMenu = ["todas", "Desayunos", "Comida", "Bebidas", "Postres"];
+  // FUNCIÓN PARA EL ACORDEÓN
+  const manejarClickTarjeta = (id) => {
+    // Si tocas la que ya está abierta, se cierra (null). Si tocas otra, se abre esa.
+    setTarjetaExpandida(tarjetaExpandida === id ? null : id);
+  };
 
-  // ZONA C · JSX — dentro del return
   return (
-    <section className="menu-section">
-      <h2 className="pixel-title">Menú de La Placita</h2>
-      
+    <section className="menu-section" aria-label="Menú principal">
       <div className="popup-tabs">
-        {categoriasMenu.map(c => (
+        <button 
+          className={`tab-btn ${categoriaActiva === "todas" ? 'active' : ''}`}
+          onClick={() => { setCategoriaActiva("todas"); setTarjetaExpandida(null); }}
+        >
+          Todas
+        </button>
+        {categorias.map(cat => (
           <button 
-            key={c} 
-            className={`tab-btn ${categoria === c ? 'active' : ''}`}
-            onClick={() => setCategoria(c)}
-            // Atributo para que el lector de pantalla sepa qué pestaña está activa
-            aria-pressed={categoria === c} 
+            key={cat.id} 
+            className={`tab-btn ${categoriaActiva === cat.id ? 'active' : ''}`}
+            onClick={() => { setCategoriaActiva(cat.id); setTarjetaExpandida(null); }}
+            title={cat.nombre}
           >
-            {c}
+            <span className="tab-text">{cat.nombre}</span>
           </button>
         ))}
       </div>
 
       <div className="popup-body menu-grid">
-        {visibles.map(p => (
-          <Tarjeta key={p.id} {...p} />
+        {visibles.map(prod => (
+          <Tarjeta 
+            key={prod.id} 
+            {...prod} 
+            /* Le pasamos a la tarjeta la orden de si debe estar abierta o no */
+            isExpanded={tarjetaExpandida === prod.id}
+            onToggle={() => manejarClickTarjeta(prod.id)}
+          />
         ))}
-        
-        {/* Mensaje por si una categoría está vacía */}
-        {visibles.length === 0 && (
-          <p className="empty-msg">No hay platillos en esta categoría por ahora.</p>
-        )}
+        {visibles.length === 0 && <p className="empty-msg">No hay platillos disponibles.</p>}
       </div>
     </section>
   );
