@@ -18,7 +18,7 @@ function App() {
       <Menu />
       </main>
 
-      {/* 4. Zona del Footer / Contacto */}
+      {/* 4. Zona del Footer (datos de contacto + formulario) */}
       <Footer />
     </div>
   );
