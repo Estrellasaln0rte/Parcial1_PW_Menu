@@ -384,3 +384,26 @@ body {
 .skeleton-zone h3 { color: var(--color-acento); font-size: 1.2rem; margin-bottom: 15px; }
 .skeleton-zone p { color: var(--color-oscuro); font-size: 0.8rem; margin-bottom: 5px; font-family: sans-serif; }
 *:focus-visible { outline: 3px solid #1450C4; outline-offset: 3px; }
+/* =========================================
+   NAVEGACIÓN INTERNA (enlaces del header)
+   ========================================= */
+
+/* Desplazamiento suave al saltar a una sección */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Deja un respiro arriba para que el título de la sección
+   no quede pegado al borde de la pantalla al llegar. */
+#nosotros,
+#menu,
+#contacto {
+  scroll-margin-top: 20px;
+}
+
+/* Quien pidió menos animación en su sistema salta de golpe */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

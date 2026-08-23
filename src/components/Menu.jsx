@@ -39,7 +39,7 @@ export default function Menu() {
   // ZONA C · lo que se ve (JSX)
   // ==========================================
   return (
-    <section className="menu-section" aria-label="Menú principal">
+    <section className="menu-section" id="menu" aria-label="Menú principal">
       <div className="popup-tabs" role="tablist" aria-label="Categorías del menú">
         <button
           type="button"
