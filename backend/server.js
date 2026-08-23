@@ -64,7 +64,7 @@ app.post("/api/contacto", async (req, res) => {
                 error: "Datos del formulario no válidos."
             });
         }
-        
+
         // 2. Limpieza de datos
         const nombreLimpio = nombre.trim();
         const emailLimpio = email.trim().toLowerCase();
@@ -75,6 +75,13 @@ app.post("/api/contacto", async (req, res) => {
         if (!nombreLimpio || !emailLimpio || !mensajeLimpio) {
             return res.status(400).json({
                 error: "Los campos no pueden estar vacíos."
+            });
+        }
+
+        // El mensaje debe contener al menos una letra
+        if (!/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(mensajeLimpio)) {
+            return res.status(400).json({
+                error: "El mensaje debe contener texto válido."
             });
         }
 
