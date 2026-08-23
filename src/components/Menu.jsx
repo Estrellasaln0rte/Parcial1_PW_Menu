@@ -1,10 +1,9 @@
 import { useState, useMemo, useCallback } from 'react';
 import Tarjeta from './Tarjeta';
+import '../styles/Menu.css';
 
 import categorias from '../data/categorias.json';
 import productos from '../data/menu.json';
-
-import '../styles/Menu.css';
 
 const CATEGORIA_TODAS = 'todas';
 
@@ -61,7 +60,7 @@ export default function Menu() {
             onClick={() => cambiarCategoria(cat.id)}
             title={cat.nombre}
           >
-            <span className="tab-text">{cat.nombre}</span>
+            {cat.nombre}
           </button>
         ))}
       </div>

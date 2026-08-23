@@ -5,7 +5,7 @@
     "descripcion": "Huevos, frijoles volteados, plátanos fritos y queso.",
     "precio": 35.00,
     "categoriaId": "cat-01",
-    "imagen": "/src/assets/platos/Desayunochapin.jpg",
+    "imagen": "/platos/Desayunochapin.jpg",
     "alt": "Desayuno chapín con huevos, frijoles, plátanos fritos y queso",
     "detalle": {
       "ingredientes": [
@@ -35,7 +35,7 @@
     "descripcion": "Huevos revueltos, frijoles, aguacate, queso y pan.",
     "precio": 40.00,
     "categoriaId": "cat-01",
-    "imagen": "/src/assets/platos/Desayunocompleto.jpg",
+    "imagen": "/platos/Desayunocompleto.jpg",
     "alt": "Desayuno completo con huevos, frijoles, aguacate, queso y pan",
     "detalle": {
       "ingredientes": [
@@ -66,7 +66,7 @@
     "descripcion": "Pollo acompañado de una salsa tradicional de pepián, arroz y verduras.",
     "precio": 55.00,
     "categoriaId": "cat-02",
-    "imagen": "/src/assets/platos/PepiandePollo.jpg",
+    "imagen": "/platos/PepiandePollo.jpg",
     "alt": "Plato de pepián de pollo con arroz y verduras",
     "detalle": {
       "ingredientes": [
@@ -101,7 +101,7 @@
     "descripcion": "Pechuga de pollo a la plancha acompañada de arroz y ensalada.",
     "precio": 48.00,
     "categoriaId": "cat-02",
-    "imagen": "/src/assets/platos/PolloALaPlancha.jpg",
+    "imagen": "/platos/PolloALaPlancha.jpg",
     "alt": "Pechuga de pollo a la plancha con arroz y ensalada",
     "detalle": {
       "ingredientes": [
@@ -130,7 +130,7 @@
     "descripcion": "Carne de res guisada en salsa de tomate con papas y zanahoria.",
     "precio": 52.00,
     "categoriaId": "cat-02",
-    "imagen": "/src/assets/platos/CarneGuisada.jpg",
+    "imagen": "/platos/CarneGuisada.jpg",
     "alt": "Carne de res guisada con papas, zanahoria y arroz",
     "detalle": {
       "ingredientes": [
@@ -160,7 +160,7 @@
     "descripcion": "Tostadas de maíz crujientes con guacamole, tomate y cebolla.",
     "precio": 25.00,
     "categoriaId": "cat-03",
-    "imagen": "/src/assets/platos/TostadasDeGuacamole.jpg",
+    "imagen": "/platos/TostadasDeGuacamole.jpg",
     "alt": "Tostadas de maíz con guacamole, tomate y cebolla",
     "detalle": {
       "ingredientes": [
@@ -188,7 +188,7 @@
     "descripcion": "Ensalada fresca con pollo a la plancha y vegetales.",
     "precio": 38.00,
     "categoriaId": "cat-04",
-    "imagen": "/src/assets/platos/EnsaladaDePollo.jpg",
+    "imagen": "/platos/EnsaladaDePollo.jpg",
     "alt": "Ensalada fresca con pollo a la plancha, lechuga, tomate y zanahoria",
     "detalle": {
       "ingredientes": [
@@ -217,7 +217,7 @@
     "descripcion": "Hamburguesa de carne de res con queso, lechuga, tomate y cebolla.",
     "precio": 42.00,
     "categoriaId": "cat-05",
-    "imagen": "/src/assets/platos/HamburguesaClasica.jpg",
+    "imagen": "/platos/HamburguesaClasica.jpg",
     "alt": "Hamburguesa clásica de carne con queso, lechuga, tomate y cebolla",
     "detalle": {
       "ingredientes": [
@@ -251,7 +251,7 @@
     "descripcion": "Jugo natural preparado con naranjas frescas.",
     "precio": 15.00,
     "categoriaId": "cat-06",
-    "imagen": "/src/assets/platos/JugoDeNaranja.jpg",
+    "imagen": "/platos/JugoDeNaranja.jpg",
     "alt": "Vaso de jugo natural de naranja recién preparado",
     "detalle": {
       "ingredientes": [
@@ -275,7 +275,7 @@
     "descripcion": "Café caliente preparado con leche.",
     "precio": 12.00,
     "categoriaId": "cat-06",
-    "imagen": "/src/assets/platos/CafeConLeche.jpg",
+    "imagen": "/platos/CafeConLeche.jpg",
     "alt": "Taza de café con leche caliente",
     "detalle": {
       "ingredientes": [
@@ -302,7 +302,7 @@
     "descripcion": "Pastel suave bañado en tres tipos de leche y cubierto con crema.",
     "precio": 22.00,
     "categoriaId": "cat-07",
-    "imagen": "/src/assets/platos/TresLeches.jpg",
+    "imagen": "/platos/TresLeches.jpg",
     "alt": "Porción de pastel de tres leches cubierta con crema",
     "detalle": {
       "ingredientes": [
@@ -336,7 +336,7 @@
     "descripcion": "Almuerzo completo que cambia según la disponibilidad del comedor.",
     "precio": 45.00,
     "categoriaId": "cat-08",
-    "imagen": "/src/assets/platos/PlatoDelDia.jpg",
+    "imagen": "/platos/PlatoDelDia.jpg",
     "alt": "Plato del día del comedor con acompañamientos variados",
     "detalle": {
       "ingredientes": [
