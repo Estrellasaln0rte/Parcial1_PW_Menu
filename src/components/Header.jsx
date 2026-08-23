@@ -1,25 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import '../styles/Header.css';
 
-export default function Header() {
-  const [mensajeHorario, setMensajeHorario] = useState("");
+const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+const HORA_APERTURA = '07:00';
+const DIAS_HORARIO_EXTENDIDO = [5, 6]; // Viernes y sábado
 
-  useEffect(() => {
-    // 1. Lista de días
-    const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+export default function Header() {
+  // ==========================================
+  // ZONA A · estado
+  // ==========================================
+  // (No aplica: el horario no es "memoria" del componente,
+  // es un valor derivado del reloj del sistema, se calcula en ZONA B)
+
+  // ==========================================
+  // ZONA B · eventos + derivado
+  // ==========================================
+
+  // useMemo evita recrear el objeto Date y recalcular el string
+  // en cada render; solo se recalcula si el componente se remonta.
+  const mensajeHorario = useMemo(() => {
     const fecha = new Date();
-    const diaActual = fecha.getDay(); 
-    const nombreDia = dias[diaActual]; // Sacamos el nombre del día de hoy
-    
-    // 2. Horarios
-    const horaApertura = "07:00"; 
-    const horaCierre = (diaActual === 5 || diaActual === 6) ? '22:00' : '20:00';
-    
-    // 3. El texto final fusionado: "Hoy Sáb 07:00 - 22:00"
-    setMensajeHorario(`Hoy ${nombreDia} ${horaApertura} - ${horaCierre}`);
+    const diaActual = fecha.getDay();
+    const nombreDia = DIAS[diaActual];
+    const horaCierre = DIAS_HORARIO_EXTENDIDO.includes(diaActual)
+      ? '22:00'
+      : '20:00';
+
+    return `Hoy ${nombreDia} ${HORA_APERTURA} - ${horaCierre}`;
   }, []);
 
-  // FUNCIÓN DE SCROLL SUAVE AL MENÚ
   const irAlMenu = () => {
     const seccion = document.getElementById('seccion-menu');
     if (seccion) {
@@ -27,36 +36,37 @@ export default function Header() {
     }
   };
 
+  // ==========================================
+  // ZONA C · lo que se ve (JSX)
+  // ==========================================
   return (
     <header className="rpg-header">
       <div className="rpg-header-container">
-        
-        {/* Lado Izquierdo: Letrero y Status */}
         <div className="header-left">
-          
-          {/* AGRUPAMOS EL LOGO Y LA FECHA DE 1995 */}
           <div className="logo-group">
             <div className="logo-badge">
               <h1>La Placita</h1>
             </div>
-            <div className="est-badge">Desde 1995</div>
+            <div className="est-badge">DESDE 1995</div>
           </div>
-          
-          {/* Aquí se mostrará: "Hoy Sáb 07:00 - 22:00" */}
+
           <div className="status-badge" title="Horario de atención">
-            <span className="status-dot"></span>
+            <span className="status-dot" aria-hidden="true"></span>
             <span className="status-text">{mensajeHorario}</span>
           </div>
-
         </div>
 
-        {/* Lado Derecho: Navegación */}
-        <nav className="header-right">
-          <button className="nav-tab active" onClick={irAlMenu}>Menú</button>
-          <button className="nav-tab">Nosotros</button>
-          <button className="nav-btn-action">ORDENAR</button>
+        <nav className="header-right" aria-label="Navegación principal">
+          <button type="button" className="nav-tab active" onClick={irAlMenu}>
+            Menú
+          </button>
+          <button type="button" className="nav-tab">
+            Nosotros
+          </button>
+          <button type="button" className="nav-btn-action">
+            ORDENAR
+          </button>
         </nav>
-        
       </div>
     </header>
   );
