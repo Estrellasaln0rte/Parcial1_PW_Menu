@@ -1,45 +1,83 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import Tarjeta from './Tarjeta';
+
+import categorias from '../data/categorias.json';
 import productos from '../data/menu.json';
 
+import '../styles/Menu.css';
+
+const CATEGORIA_TODAS = 'todas';
+
 export default function Menu() {
-  // ZONA A · estado — arriba del return
-  const [categoria, setCategoria] = useState("todas");
+  // ==========================================
+  // ZONA A · estado (Memoria del componente)
+  // ==========================================
+  const [categoriaActiva, setCategoriaActiva] = useState(CATEGORIA_TODAS);
+  const [tarjetaExpandida, setTarjetaExpandida] = useState(null);
 
-  // ZONA B · derivado — debajo del estado
-  const visibles = categoria === "todas" 
-    ? productos 
-    : productos.filter(p => p.categoria === categoria);
+  // ==========================================
+  // ZONA B · eventos + derivado (Lógica)
+  // ==========================================
+  const visibles = useMemo(() => {
+    return productos.filter((producto) => {
+      if (producto.disponible === false) return false;
+      if (categoriaActiva === CATEGORIA_TODAS) return true;
+      return producto.categoriaId === categoriaActiva;
+    });
+  }, [categoriaActiva]);
 
-  const categoriasMenu = ["todas", "Desayunos", "Comida", "Bebidas", "Postres"];
+  const manejarClickTarjeta = useCallback((id) => {
+    setTarjetaExpandida((actual) => (actual === id ? null : id));
+  }, []);
 
-  // ZONA C · JSX — dentro del return
+  const cambiarCategoria = useCallback((idCategoria) => {
+    setCategoriaActiva(idCategoria);
+    setTarjetaExpandida(null);
+  }, []);
+
+  // ==========================================
+  // ZONA C · lo que se ve (JSX)
+  // ==========================================
   return (
-    <section className="menu-section">
-      <h2 className="pixel-title">Menú de La Placita</h2>
-      
-      <div className="popup-tabs">
-        {categoriasMenu.map(c => (
-          <button 
-            key={c} 
-            className={`tab-btn ${categoria === c ? 'active' : ''}`}
-            onClick={() => setCategoria(c)}
-            // Atributo para que el lector de pantalla sepa qué pestaña está activa
-            aria-pressed={categoria === c} 
+    <section className="menu-section" aria-label="Menú principal">
+      <div className="popup-tabs" role="tablist" aria-label="Categorías del menú">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={categoriaActiva === CATEGORIA_TODAS}
+          className={`tab-btn ${categoriaActiva === CATEGORIA_TODAS ? 'active' : ''}`}
+          onClick={() => cambiarCategoria(CATEGORIA_TODAS)}
+        >
+          Todas
+        </button>
+
+        {categorias.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            role="tab"
+            aria-selected={categoriaActiva === cat.id}
+            className={`tab-btn ${categoriaActiva === cat.id ? 'active' : ''}`}
+            onClick={() => cambiarCategoria(cat.id)}
+            title={cat.nombre}
           >
-            {c}
+            <span className="tab-text">{cat.nombre}</span>
           </button>
         ))}
       </div>
 
-      <div className="popup-body menu-grid">
-        {visibles.map(p => (
-          <Tarjeta key={p.id} {...p} />
-        ))}
-        
-        {/* Mensaje por si una categoría está vacía */}
-        {visibles.length === 0 && (
-          <p className="empty-msg">No hay platillos en esta categoría por ahora.</p>
+      <div className="popup-body menu-grid" aria-live="polite">
+        {visibles.length > 0 ? (
+          visibles.map((prod) => (
+            <Tarjeta
+              key={prod.id}
+              {...prod}
+              isExpanded={tarjetaExpandida === prod.id}
+              onToggle={() => manejarClickTarjeta(prod.id)}
+            />
+          ))
+        ) : (
+          <p className="empty-msg">No hay platillos disponibles.</p>
         )}
       </div>
     </section>
