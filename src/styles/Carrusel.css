@@ -1,6 +1,6 @@
 .carrusel {
     width: 100%;
-    margin: 0;
+    margin-bottom: 40px;
     aspect-ratio: 2;
     max-height: 520px;
     min-height: 300px;
