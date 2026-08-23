@@ -3,7 +3,6 @@
     "id": "prod-001",
     "nombre": "Desayuno Chapín",
     "descripcion": "Huevos, frijoles volteados, plátanos fritos y queso.",
-    "alt": "Plato con huevos, frijoles volteados, plátano frito y queso",
     "precio": 35.00,
     "categoriaId": "cat-01",
     "imagen": "/src/assets/platos/Desayunochapin.jpg",
@@ -276,7 +275,7 @@
     "descripcion": "Café caliente preparado con leche.",
     "precio": 12.00,
     "categoriaId": "cat-06",
-    "imagen": "Café caliente preparado con leche.",
+    "imagen": "/src/assets/platos/CafeConLeche.jpg",
     "alt": "Taza de café con leche caliente",
     "detalle": {
       "ingredientes": [
