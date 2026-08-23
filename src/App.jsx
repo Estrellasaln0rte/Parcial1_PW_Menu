@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Carrousel from './components/Carrusel';
 import Menu from './components/Menu';
 import Footer from './components/Footer';
 import './styles/index.css';
@@ -13,12 +14,13 @@ function App() {
       <main>
       {/* 2. Zona de la Portada (Hero) */}
       <Hero />
+      <Carrousel />
 
       {/* 3. Zona del Menú (La que ya trabajamos) */}
       <Menu />
       </main>
 
-      {/* 4. Zona del Footer / Contacto */}
+      {/* 4. Zona del Footer (datos de contacto + formulario) */}
       <Footer />
     </div>
   );
