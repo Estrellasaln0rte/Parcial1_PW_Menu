@@ -3,7 +3,6 @@
     "id": "prod-001",
     "nombre": "Desayuno Chapín",
     "descripcion": "Huevos, frijoles volteados, plátanos fritos y queso.",
-    "alt": "Plato con huevos, frijoles volteados, plátano frito y queso",
     "precio": 35.00,
     "categoriaId": "cat-01",
     "imagen": "/src/assets/platos/Desayunochapin.jpg",
