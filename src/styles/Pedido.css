@@ -1,0 +1,281 @@
+/* =========================================
+   PEDIDO: contador en tarjeta + resumen
+   ========================================= */
+
+/* --- Contador dentro de cada tarjeta --- */
+.contador-zona {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px dashed rgba(61, 35, 20, 0.25);
+}
+
+.btn-agregar {
+  font-family: var(--fuente-pixel);
+  font-size: 0.6rem;
+  color: var(--color-claro);
+  background-color: var(--color-acento);
+  border: 3px solid var(--color-oscuro);
+  border-radius: 4px;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--color-oscuro);
+  transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+}
+
+.btn-agregar:hover { background-color: var(--color-madera); }
+
+.btn-agregar:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.contador {
+  display: inline-flex;
+  align-items: center;
+  border: 3px solid var(--color-oscuro);
+  border-radius: 4px;
+  background-color: var(--color-fondo);
+  overflow: hidden;
+}
+
+.contador-btn {
+  font-family: var(--fuente-pixel);
+  font-size: 0.8rem;
+  color: var(--color-claro);
+  background-color: var(--color-madera);
+  border: none;
+  /* 44px de lado: tamaño mínimo cómodo para el dedo en celular */
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contador-btn:hover { background-color: var(--color-acento); }
+
+.contador-numero {
+  font-family: var(--fuente-pixel);
+  font-size: 0.75rem;
+  color: var(--color-oscuro);
+  min-width: 46px;
+  text-align: center;
+}
+
+.contador-subtotal {
+  font-family: var(--fuente-pixel);
+  font-size: 0.65rem;
+  color: var(--color-acento);
+}
+
+.contador-chico .contador-btn { min-width: 36px; min-height: 36px; font-size: 0.7rem; }
+.contador-chico .contador-numero { min-width: 34px; font-size: 0.65rem; }
+
+/* --- Globo con el número en el botón del header --- */
+.nav-btn-action { position: relative; }
+
+.pedido-globo {
+  display: inline-block;
+  margin-left: 8px;
+  min-width: 22px;
+  padding: 2px 6px;
+  font-size: 0.6rem;
+  color: var(--color-oscuro);
+  background-color: var(--color-claro);
+  border: 2px solid var(--color-oscuro);
+  border-radius: 4px;
+}
+
+/* --- Panel del resumen --- */
+.resumen-fondo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.resumen-panel {
+  position: fixed;
+  z-index: 101;
+  /* Celular: cajón que sube desde abajo */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: var(--color-claro);
+  border-top: 5px solid var(--color-oscuro);
+  padding: 22px 18px 28px;
+}
+
+.resumen-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid var(--color-oscuro);
+}
+
+.resumen-encabezado h2 {
+  font-family: var(--fuente-pixel);
+  font-size: 0.95rem;
+  color: var(--color-oscuro);
+}
+
+.resumen-cerrar {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--color-oscuro);
+  background: transparent;
+  border: 3px solid var(--color-oscuro);
+  border-radius: 4px;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.resumen-cerrar:hover {
+  background-color: var(--color-acento);
+  color: var(--color-claro);
+}
+
+.resumen-vacio {
+  font-family: sans-serif;
+  font-size: 1rem;
+  color: var(--color-madera);
+  line-height: 1.6;
+  padding: 20px 0;
+}
+
+.resumen-lista { list-style: none; padding: 0; }
+
+.resumen-linea {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 2px dashed rgba(61, 35, 20, 0.25);
+}
+
+.resumen-nombre {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-oscuro);
+}
+
+.resumen-unitario {
+  font-weight: normal;
+  font-size: 0.85rem;
+  color: var(--color-madera);
+}
+
+.resumen-subtotal {
+  grid-column: 2;
+  font-family: var(--fuente-pixel);
+  font-size: 0.65rem;
+  color: var(--color-acento);
+  text-align: right;
+}
+
+.resumen-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fuente-pixel);
+  font-size: 0.75rem;
+  color: var(--color-oscuro);
+  margin-top: 18px;
+  padding: 16px;
+  background-color: var(--color-fondo);
+  border: 3px solid var(--color-oscuro);
+  border-radius: 4px;
+}
+
+.resumen-nota {
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  color: var(--color-madera);
+  text-align: center;
+  margin-top: 14px;
+}
+
+.resumen-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-enviar-pedido {
+  font-family: var(--fuente-pixel);
+  font-size: 0.7rem;
+  color: var(--color-claro);
+  background-color: var(--color-acento);
+  border: 4px solid var(--color-oscuro);
+  border-radius: 4px;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px var(--color-oscuro);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-enviar-pedido:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.btn-vaciar {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-madera);
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Foco visible en todos los controles del pedido */
+.btn-agregar:focus-visible,
+.contador-btn:focus-visible,
+.resumen-cerrar:focus-visible,
+.btn-enviar-pedido:focus-visible,
+.btn-vaciar:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+}
+
+/* --- Escritorio: el resumen es una ventana centrada --- */
+@media (min-width: 768px) {
+  .resumen-panel {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    width: min(560px, 92vw);
+    max-height: 82vh;
+    border: 5px solid var(--color-oscuro);
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.35);
+    padding: 30px;
+  }
+
+  .resumen-acciones { flex-direction: row-reverse; align-items: center; }
+  .btn-enviar-pedido { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-agregar, .contador-btn, .btn-enviar-pedido { transition: none; }
+}
