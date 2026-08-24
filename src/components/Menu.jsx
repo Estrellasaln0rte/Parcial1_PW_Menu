@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Tarjeta from './Tarjeta';
+import '../styles/Menu.css';
 
 import '../styles/Menu.css';
 
