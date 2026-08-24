@@ -43,7 +43,7 @@ function Carrusel() {
     }, []);
 
 return (
-    <section className="carrusel">
+    <section className="carrusel" id="nosotros" aria-label="Quiénes somos">
 
         <div
             className="slides-container"

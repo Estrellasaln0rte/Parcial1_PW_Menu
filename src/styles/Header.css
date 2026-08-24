@@ -201,3 +201,22 @@
     gap: 15px;
   }
 }
+/* =========================================
+   NAVEGACIÓN POR ENLACES
+   Las pestañas pasaron de <button> a <a href="#...">.
+   Esto las mantiene con el mismo aspecto de antes.
+   ========================================= */
+a.nav-tab,
+a.nav-btn-action {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Foco visible al navegar con teclado (Tab).
+   Sin esto, quien no usa mouse no sabe dónde está parado. */
+.nav-tab:focus-visible,
+.nav-btn-action:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

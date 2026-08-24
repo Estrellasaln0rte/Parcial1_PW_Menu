@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { usePedido } from '../context/pedido-context';
 import '../styles/Contacto.css';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
@@ -16,11 +17,23 @@ export default function Contacto() {
   // ==========================================
   // ZONA A · estado (Memoria del componente)
   // ==========================================
+  const { mensajeSugerido, limpiarSugerencia } = usePedido();
+
   const [valores, setValores] = useState(FORMULARIO_VACIO);
   const [errores, setErrores] = useState({});
   // 'idle' | 'enviando' | 'exito' | 'error'
   const [estado, setEstado] = useState('idle');
   const [errorServidor, setErrorServidor] = useState('');
+
+  // Cuando el resumen manda un pedido, se copia al campo de mensaje.
+  // Se ajusta durante el render (patrón recomendado por React) en vez
+  // de con useEffect, que dispararía un render extra.
+  const [pedidoAplicado, setPedidoAplicado] = useState('');
+  if (mensajeSugerido && mensajeSugerido !== pedidoAplicado) {
+    setPedidoAplicado(mensajeSugerido);
+    setValores((actual) => ({ ...actual, mensaje: mensajeSugerido }));
+    setErrores((actual) => ({ ...actual, mensaje: '' }));
+  }
 
   // Referencias para mover el foco al primer campo con error.
   const nombreRef = useRef(null);
@@ -135,6 +148,8 @@ export default function Contacto() {
       setEstado('exito');
       setValores(FORMULARIO_VACIO);
       setErrores({});
+      limpiarSugerencia();
+      setPedidoAplicado('');
     } catch (error) {
       setEstado('error');
       // TypeError = el fetch ni siquiera salió (servidor apagado, sin internet).

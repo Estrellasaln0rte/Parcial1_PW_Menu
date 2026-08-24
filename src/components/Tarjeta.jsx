@@ -1,7 +1,9 @@
-import { memo, useState, useEffect } from 'react';
+import { memo } from 'react';
+import ContadorPedido from './ContadorPedido';
 import '../styles/Tarjeta.css';
 
 function Tarjeta({
+  id,
   nombre,
   descripcion,
   precio,
@@ -86,6 +88,9 @@ function Tarjeta({
           <span className="click-hint">
             {isExpanded ? '▲ CERRAR RECETA' : '▼ VER RECETA'}
           </span>
+
+          {/* Contador para armar el pedido */}
+          <ContadorPedido id={id} nombre={nombre} precio={precio} />
         </div>
       </div>
 
