@@ -11,6 +11,8 @@ function App() {
 
       <main>
       <Carrousel />
+
+      {/* 3. Zona del Menú (La que ya trabajamos) */}
       <Menu />
       </main>
       
