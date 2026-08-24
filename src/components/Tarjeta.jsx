@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import ContadorPedido from './ContadorPedido';
 import '../styles/Tarjeta.css';
 
