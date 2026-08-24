@@ -1,5 +1,4 @@
 # Backend
-
 Backend de la aplicación desarrollado con **Node.js + Express**. Su función principal es recibir las solicitudes del frontend y gestionar el envío de correos mediante **Resend**.
 
 ## Tecnologías
