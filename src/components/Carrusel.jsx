@@ -33,7 +33,7 @@ function Carrusel() {
 
     const [slideActual, setSlideActual] = useState(0);
 
-    // Cambio automático cada 4 segundos
+    // Cambio automático cada 5 segundos
     useEffect(() => {
         const intervalo = setInterval(() => {
             setSlideActual((actual) => (actual + 1) % slides.length);
