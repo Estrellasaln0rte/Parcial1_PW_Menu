@@ -26,7 +26,7 @@ Cada categoría tiene solo tres datos:
 Cada platillo tiene más información:
 
 | Campo | Qué es |
-
+| --- | --- |
 | `id` | Código único del producto |
 | `nombre` / `descripcion` | Lo que se muestra al cliente |
 | `precio` | El número, sin comillas |
