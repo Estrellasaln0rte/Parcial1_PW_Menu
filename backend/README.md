@@ -1,5 +1,4 @@
 # Backend
-
 Backend de la aplicación desarrollado con **Node.js + Express**. Su función principal es recibir las solicitudes del frontend y gestionar el envío de correos mediante **Resend**.
 
 ## Tecnologías
@@ -9,6 +8,7 @@ Backend de la aplicación desarrollado con **Node.js + Express**. Su función pr
 - Resend
 - CORS
 - dotenv
+- express-rate-limit
 
 ## Estructura
 
@@ -44,17 +44,20 @@ Express | Creación del servidor y endpoints
 |Resend|Envío de correos|
 |CORS| Comunicación entre frontend y backend |
 |dotenv | Manejo de variables de entorno
+| express-rate-limit | Limitación de solicitudes para protección contra spam
 
 ## Configuración de variables de entorno
-Para el manejo de API Resend, se debe crear un archivo local `.env` dentro de la carpeta `backend/` ***(usar como base el archivo `.env.example`)***
+Para el manejo de API Resend, se debe crear un archivo local `.env` dentro de la carpeta `backend/` 
 
-Dentro del archivo, se debe agregar la API Key a utilizar
+Se puede utilizar `.env.example` como plantilla.
+
+Dentro del archivo, agregar:
 ```
 RESEND_API_KEY=XXXXXXXX
 ```
 La API Key debe solicitarse al **responsable** del proyecto, y sustituir en lugar de 'XXXXXXXX'
 
-El archivo `.env` está incluido en `.gitignore`, por lo que cada desarrollador debe mantener su archivo localmente. El archivo no se comparte mediante Git. 
+El archivo `.env` está incluido en `.gitignore`, por lo que cada desarrollador debe mantener su archivo localmente. **El archivo no se comparte mediante Git.**
 
 ## Ejecución
 
@@ -90,6 +93,13 @@ En formato JSON:
   "mensaje": "Mensaje de contacto"
 }
 ```
-Este formato es procesado por Resend y reenviado al correo asignado del negocio, descrito en `server.js`
+El backend procesa los datos recibidos y utiliza Resend para enviar el mensaje al correo configurado en `server.js`.
 
+## Protección contra spam
+El endpoint de contacto utiliza `express-rate-limit` para limitar la cantidad de solicitudes que puede realizar una misma dirección IP durante un período determinado.
 
+Actualmente se permiten: 
+- 5 solicitudes
+- Cada 15 minutos
+
+Además, el backend cuenta con validaciones básicas y mecanismos para rechazar mensajes inválidos o solicitudes repetidas.
