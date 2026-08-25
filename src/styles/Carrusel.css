@@ -100,27 +100,6 @@
     margin:auto;
 }
 
-/* Botón */
-.slide-btn {
-
-    padding:12px 28px;
-
-    font-size:1rem;
-
-    border-radius:30px;
-
-    border: none;
-
-    background: white;
-    color: #333;
-
-    cursor: pointer;
-
-    animation: aparecerTexto 1.4s ease;
-
-    transition: transform 0.3s ease;
-}
-
 .slide-btn:hover {
     transform: scale(1.08);
 }
