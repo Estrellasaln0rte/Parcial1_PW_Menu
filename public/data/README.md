@@ -16,7 +16,7 @@ Ese código de conexión se llama `categoriaId`. Por ejemplo, el "Pepián de Pol
 Cada categoría tiene solo tres datos:
 
 | Campo | Qué es |
-
+| --- | --- |
 | `id` | El código único de la sección (nunca lo cambies si ya hay platillos usándolo) |
 | `nombre` | Lo que ve el cliente (ej. "Postres") |
 | `descripcion` | Una frase corta que explica esa sección |
