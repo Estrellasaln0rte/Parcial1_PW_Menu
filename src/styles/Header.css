@@ -177,30 +177,34 @@
 /* =========================================
    CELULARES
    ========================================= */
+
 @media (max-width: 768px) {
-  .rpg-header-container {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 10px;
-  }
+    .rpg-header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 10px;
+    }
 
-  .header-left {
-    flex-direction: column;
-    gap: 12px;
-  }
+    .header-left {
+        flex-direction: column;
+        gap: 12px;
+    }
 
-  .logo-badge {
-    transform: rotate(0deg);
-  }
+    .logo-badge {
+        transform: rotate(0deg);
+    }
 
-  .logo-group {
-    margin-left: 0;
-  }
-
-  .header-right {
-    gap: 15px;
-  }
+    .logo-group {
+        margin-left: 0;
+    }
+/*Corrección de comportamiento en celulares*/
+    .header-right {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
+
 /* =========================================
    NAVEGACIÓN POR ENLACES
    Las pestañas pasaron de <button> a <a href="#...">.
