@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import ResumenPedido from './ResumenPedido';
+import { usePedido } from '../context/pedido-context';
 import '../styles/Header.css';
 
 
@@ -22,6 +24,8 @@ const SECCIONES = [
 
 export default function Header() {
   const [seccionActiva, setSeccionActiva] = useState('');
+  const [resumenAbierto, setResumenAbierto] = useState(false);
+  const { totalUnidades } = usePedido();
 
   // 3. El texto final fusionado: "Hoy Sáb 07:00 - 22:00"
   const mensajeHorario = calcularHorario();
@@ -50,6 +54,9 @@ export default function Header() {
     return () => observador.disconnect();
   }, []);
 
+  // ==========================================
+  // ZONA C · lo que se ve (JSX)
+  // ==========================================
   return (
     <header className="rpg-header">
       <div className="rpg-header-container">
@@ -62,15 +69,14 @@ export default function Header() {
             <div className="logo-badge">
               <h1>La Placita</h1>
             </div>
-            <div className="est-badge">Desde 1995</div>
+            <div className="est-badge">DESDE 1995</div>
           </div>
 
           {/* Aquí se mostrará: "Hoy Sáb 07:00 - 22:00" */}
           <div className="status-badge" title="Horario de atención">
-            <span className="status-dot"></span>
+            <span className="status-dot" aria-hidden="true"></span>
             <span className="status-text">{mensajeHorario}</span>
           </div>
-
         </div>
 
         {/* Lado Derecho: Navegación */}
@@ -87,13 +93,25 @@ export default function Header() {
             </a>
           ))}
 
-          {/* Ordenar = escribirle a Don Chente, así que lleva al formulario */}
-          <a className="nav-btn-action" href="#contacto">
-            ORDENAR
-          </a>
+          {/* Abre el resumen del pedido. El número avisa cuánto lleva. */}
+          <button
+            type="button"
+            className="nav-btn-action"
+            onClick={() => setResumenAbierto(true)}
+            aria-label={
+              totalUnidades > 0
+                ? `Ver mi pedido, ${totalUnidades} platillos`
+                : 'Ver mi pedido, está vacío'
+            }
+          >
+            MI PEDIDO
+            {totalUnidades > 0 && <span className="pedido-globo">{totalUnidades}</span>}
+          </button>
         </nav>
 
       </div>
+
+      <ResumenPedido abierto={resumenAbierto} alCerrar={() => setResumenAbierto(false)} />
     </header>
   );
 }

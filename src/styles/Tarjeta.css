@@ -218,3 +218,33 @@
     margin-left: 20px;
   }
 }
+
+.pixel-frame-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-claro);
+  background-color: var(--color-madera);
+}
+
+.fallback-icon {
+  font-size: 2rem;
+  animation: girar 3s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fallback-text {
+  font-family: var(--fuente-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 8px;
+}

@@ -1,7 +1,9 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
+import ContadorPedido from './ContadorPedido';
 import '../styles/Tarjeta.css';
 
 function Tarjeta({
+  id,
   nombre,
   descripcion,
   precio,
@@ -15,18 +17,29 @@ function Tarjeta({
   // ==========================================
   // ZONA A · estado
   // ==========================================
-  // (No aplica: este componente no tiene memoria propia,
-  // isExpanded y onToggle vienen controlados desde Menu.jsx)
+  // Propio de este componente: detecta si ESTA imagen puntual
+  // falló al cargar (ruta rota, 404, etc.)
+  const [imagenRota, setImagenRota] = useState(false);
 
   // ==========================================
   // ZONA B · eventos + derivado
   // ==========================================
+
+  // Si el producto cambia (ej. cambia de categoría y se reusa el
+  // componente), reseteamos el error para volver a intentar cargar.
+  useEffect(() => {
+    setImagenRota(false);
+  }, [imagen]);
+
   const manejarTeclado = (e) => {
-    // Permite abrir/cerrar con Enter o Espacio, no solo con click
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onToggle();
     }
+  };
+
+  const manejarErrorImagen = () => {
+    setImagenRota(true);
   };
 
   const tieneAlergenos = alergenos && alergenos.length > 0;
@@ -46,7 +59,19 @@ function Tarjeta({
     >
       <div className="card-main-row">
         <div className="pixel-frame">
-          <img src={imagen} alt={alt || nombre} loading="lazy" />
+          {imagenRota ? (
+            <div className="pixel-frame-fallback" role="img" aria-label={alt || nombre}>
+              <span className="fallback-icon" aria-hidden="true">⚙️</span>
+              <span className="fallback-text">Pendiente</span>
+            </div>
+          ) : (
+            <img
+              src={imagen}
+              alt={alt || nombre}
+              loading="lazy"
+              onError={manejarErrorImagen}
+            />
+          )}
         </div>
 
         <div className="card-info">
@@ -63,6 +88,9 @@ function Tarjeta({
           <span className="click-hint">
             {isExpanded ? '▲ CERRAR RECETA' : '▼ VER RECETA'}
           </span>
+
+          {/* Contador para armar el pedido */}
+          <ContadorPedido id={id} nombre={nombre} precio={precio} />
         </div>
       </div>
 
@@ -94,6 +122,4 @@ function Tarjeta({
   );
 }
 
-// React.memo evita re-renderizar esta tarjeta si sus props no cambiaron.
-// Funciona bien porque Menu.jsx ya usa useCallback en manejarClickTarjeta.
 export default memo(Tarjeta);
