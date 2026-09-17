@@ -1,16 +1,9 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Tarjeta from './Tarjeta';
-import '../styles/Menu.css';
-
+import { obtenerProductos, obtenerCategorias } from '../services/menuService';
 import '../styles/Menu.css';
 
 const CATEGORIA_TODAS = 'todas';
-
-// Los datos viven en public/, no en src/. Así NO se compilan dentro del
-// JavaScript: siguen siendo archivos que Don Chente puede editar y que el
-// navegador vuelve a pedir en cada visita.
-const RUTA_PRODUCTOS = '/data/menu.json';
-const RUTA_CATEGORIAS = '/data/categorias.json';
 
 export default function Menu() {
   // ==========================================
@@ -44,25 +37,11 @@ export default function Menu() {
       setMensajeError('');
 
       try {
-        // Los dos archivos se piden en paralelo, no uno tras otro.
-        const [resProductos, resCategorias] = await Promise.all([
-          fetch(RUTA_PRODUCTOS, { signal: control.signal }),
-          fetch(RUTA_CATEGORIAS, { signal: control.signal }),
-        ]);
-
-        if (!resProductos.ok || !resCategorias.ok) {
-          throw new Error('No encontramos el archivo del menú.');
-        }
-
+        // Productos y categorías se piden en paralelo, no uno tras otro.
         const [datosProductos, datosCategorias] = await Promise.all([
-          resProductos.json(),
-          resCategorias.json(),
+          obtenerProductos(control.signal),
+          obtenerCategorias(control.signal),
         ]);
-
-        // Si el archivo viene mal editado, avisamos en vez de reventar.
-        if (!Array.isArray(datosProductos) || !Array.isArray(datosCategorias)) {
-          throw new Error('El archivo del menú no tiene el formato esperado.');
-        }
 
         setProductos(datosProductos);
         setCategorias(datosCategorias);
