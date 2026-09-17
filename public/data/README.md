@@ -1,59 +1,51 @@
 # Cómo actualizar el menú de La Placita
 
-Esta guía explica, en palabras sencillas, cómo agregar, cambiar o quitar platillos y secciones del menú. No necesita saber de programación para seguirla, solo hay que tener cuidado con el orden.
+El menú ya no vive en archivos JSON dentro de este proyecto: ahora vive en la base de datos de Supabase. Para agregar, cambiar o quitar platillos y secciones hay que entrar al proyecto en [supabase.com](https://supabase.com), sección **Table Editor**, y editar las filas de las tablas correspondientes.
 
 # La idea general
 
-El menú vive en dos archivos:
+- **`categorias`**: son las secciones del menú, como si fueran las pestañas de una carta física (Desayunos, Almuerzos, Bebidas, Postres, etc.).
+- **`productos`**: son los platillos individuales. Cada uno "sabe" a qué sección pertenece gracias a la columna `categoria_id`, que lo conecta con el `id` de su categoría.
+- **`ingredientes`**: cada fila es un ingrediente de un producto (columna `producto_id`), con un número de `orden` para que aparezcan siempre en el mismo orden.
+- **`alergenos`** / **`etiquetas`**: catálogos de palabras cortas, conectados a cada producto mediante las tablas `producto_alergenos` y `producto_etiquetas`.
 
-- **Categorías**: son las secciones del menú, como si fueran las pestañas de una carta física (Desayunos, Almuerzos, Bebidas, Postres, etc.).
-- **Productos**: son los platillos individuales. Cada uno "sabe" a qué sección pertenece gracias a un código que lo conecta con su categoría.
-
-Ese código de conexión se llama `categoriaId`. Por ejemplo, el "Pepián de Pollo" tiene `"categoriaId": "cat-02"`, y si buscas `cat-02` en el archivo de categorías, verás que corresponde a "Almuerzos". Así es como el sistema sabe en qué sección mostrar cada platillo — no por el nombre, sino por ese código.
-
-# Las partes de una categoría
-
-Cada categoría tiene solo tres datos:
+# Las partes de una categoría (tabla `categorias`)
 
 | Campo | Qué es |
 | --- | --- |
-| `id` | El código único de la sección (nunca lo cambies si ya hay platillos usándolo) |
+| `id` | El código único de la sección (nunca lo cambies si ya hay productos usándolo) |
 | `nombre` | Lo que ve el cliente (ej. "Postres") |
 | `descripcion` | Una frase corta que explica esa sección |
 
-# Las partes de un producto
-
-Cada platillo tiene más información:
+# Las partes de un producto (tabla `productos`)
 
 | Campo | Qué es |
 | --- | --- |
 | `id` | Código único del producto |
 | `nombre` / `descripcion` | Lo que se muestra al cliente |
-| `precio` | El número, sin comillas |
-| `categoriaId` | A qué sección pertenece (debe coincidir con un id de categoría que exista) |
-| `imagen` | El enlace a la foto |
+| `precio` | El número, sin comillas ni signo de moneda |
+| `categoria_id` | A qué sección pertenece (debe coincidir con un `id` de `categorias` que exista) |
+| `imagen` | La ruta a la foto (ej. `/platos/PlatoDelDia.jpg`) |
 | `alt` | Descripción de la imagen (para accesibilidad) |
-| `detalle` | Ingredientes, preparación, porción y tiempo de preparación |
+| `preparacion` / `porcion` / `tiempo_preparacion` | Detalle de la receta |
 | `disponible` | Si se puede pedir ahora (`true`) o no (`false`) |
-| `etiquetas` | Listas de palabras cortas |
-
 
 # Pasos para hacer los cambios más comunes
 
 # Agregar una categoría nueva
-Copia un bloque completo de categoría (desde la `{` hasta la `}`), pégalo antes del corchete final `]` del archivo de categorías, y sepáralo del anterior con una coma. Cambia el `id` a uno que no exista todavía (ej. `"cat-09"`), y escribe el nombre y descripción nuevos.
+En la tabla `categorias`, inserta una fila nueva con un `id` que no exista todavía (ej. `cat-09`) y su `nombre` y `descripcion`.
 
 # Editar una categoría existente
-Busca el bloque que tiene el `id` de la categoría que quieres cambiar (ej. `"cat-06"` para Bebidas) y reescribe el texto entre comillas de `"nombre"` o `"descripcion"`. No toques el `id`.
+Busca la fila por su `id` (ej. `cat-06` para Bebidas) y edita `nombre` o `descripcion`. No toques el `id`.
 
 # Eliminar una categoría
-Antes de borrarla, revisa que ningún producto tenga ese `categoriaId`, o ese platillo quedará "huérfano" y podría no mostrarse bien. Si nadie la usa, borra el bloque completo y la coma que lo separaba del siguiente.
+Antes de borrarla, revisa que ningún producto tenga ese `categoria_id`, o la base de datos rechazará el borrado (o el producto quedará sin sección). Si nadie la usa, borra la fila.
 
 # Agregar un producto nuevo
-Copia un bloque completo de producto, pégalo antes del corchete final del archivo de productos y sepáralo con una coma. Ponle un `id` único (ej. `"prod-013"`), completa nombre, descripción, precio y —muy importante— el `categoriaId` correcto para que aparezca en la sección deseada.
+Inserta una fila en `productos` con un `id` único (ej. `prod-013`) y el `categoria_id` correcto. Luego agrega sus ingredientes como filas en `ingredientes` (con el mismo `producto_id` y un `orden` para cada uno), y si aplica, conecta alérgenos/etiquetas insertando filas en `producto_alergenos` / `producto_etiquetas`.
 
 # Editar un producto (precio, nombre, disponibilidad, etc.)
-Ubica el producto por su `id` o nombre. Para cambiar el precio, reemplaza solo el número después de `"precio":`. Para que un platillo deje de mostrarse temporalmente sin borrarlo, cambia `"disponible": true` a `"disponible": false`.
+Ubica el producto por su `id` o nombre en la tabla `productos` y edita el campo directamente. Para que un platillo deje de mostrarse temporalmente sin borrarlo, cambia `disponible` a `false`.
 
 # Mover un producto a otra sección
-Solo cambia el valor de `"categoriaId"` por el `id` de la categoría a la que quieres moverlo. No hace falta tocar nada más de ese producto.
+Solo cambia el valor de `categoria_id` por el `id` de la categoría a la que quieres moverlo. No hace falta tocar nada más de ese producto.
